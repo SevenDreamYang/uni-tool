@@ -114,7 +114,7 @@ function getClipboardData() {
   });
 }
 
-function sync(fn, ...arg) {
+function toSync(fn, ...arg) {
   return new Promise((resolve) =>
     fn
       .apply(null, arg)
@@ -123,8 +123,8 @@ function sync(fn, ...arg) {
   );
 }
 
-const setClipboardDataSync = (...arg) => sync(setClipboardData, ...arg);
+const setClipboardDataSync = (...arg) => toSync(setClipboardData, ...arg);
 
-const getClipboardDataSync = () => sync(setClipboardData);
+const getClipboardDataSync = () => toSync(setClipboardData);
 
 export { setClipboardData, getClipboardData, setClipboardDataSync, getClipboardDataSync };

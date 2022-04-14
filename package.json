@@ -7,14 +7,14 @@
   "scripts": {
     "start": "npx webpack --mode development"
   },
+  "files": [
+    "packages/*.js",
+    "utils/*.js",
+    "types/*.d.ts"
+  ],
   "author": "SevenDreamYang",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.17.9",
-    "@babel/preset-env": "^7.16.11",
-    "babel-loader": "^8.2.4",
-    "terser-webpack-plugin": "^5.3.1",
-    "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2"
+  "dependencies": {
+    "vue": "^2.5.21"
   }
 }

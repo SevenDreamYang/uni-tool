@@ -1,3 +1,3 @@
 import * as clipboardData from './packages/clipboardData';
-
-export { clipboardData };
+import uRouter from './packages/uRouter';
+export { clipboardData, uRouter };
