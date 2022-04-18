@@ -15,6 +15,7 @@
   "author": "SevenDreamYang",
   "license": "ISC",
   "dependencies": {
+    "jweixin-module": "^1.6.0",
     "vue": "^2.5.21"
   }
 }
