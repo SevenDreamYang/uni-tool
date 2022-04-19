@@ -25,7 +25,8 @@ export default {
   },
   /**
    * @function 清除所有storage
-   */ clear() {
+   */
+  clear() {
     try {
       uni.clearStorageSync();
     } catch (err) {

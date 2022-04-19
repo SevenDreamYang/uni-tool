@@ -12,7 +12,7 @@ class WxSdk {
   }
 
   wxAuthorize(config, isJump = () => false, callback) {
-    if (this.isDev || !this.isWechat()) return false;
+    if (this.isDevLocation() || !this.isWechat()) return false;
     const code = getUrlParam('code');
     const { appId, redirect_url } = config;
     if (isJump && isJump(code)) {
