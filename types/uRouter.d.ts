@@ -25,7 +25,7 @@ interface GoParams extends BaseParams {
 
 interface CloseAllToParams extends UParams {}
 
-export declare class UniToVueRouter {
+declare class UniToVueRouter {
   push: (_params: string | (PushParams & AppParams)) => Promise<any>;
   replace: (_params: string | ReplaceParams) => Promise<any>;
   go: (_params: number | (GoParams & AppParams)) => Promise<any>;
@@ -38,5 +38,5 @@ interface InstallationOptions {
 }
 
 export declare function install(vue: typeof Vue, options?: InstallationOptions): void {
-  vue.prototype.$uRouter = new UniToVueRouter(option);
+  vue.prototype.$uRouter = new UniToVueRouter(options);
 };

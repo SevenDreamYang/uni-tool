@@ -32,7 +32,7 @@ class UniToVueRouter {
     }
     // todo : 页面大于10 无法继续跳转 navigateTo 将变换成 redirectTo
     const GOTYPE = getCurrentPages().length >= 10 ? 'redirectTo' : 'navigateTo';
-    if (this.debug) console.warn('go to page:' + config['url']);
+    if (this.debug) console.warn('push to page:' + config['url']);
     return new Promise((success, fail) => uni[GOTYPE]({ ...config, success, fail }));
   }
 
@@ -51,7 +51,7 @@ class UniToVueRouter {
       if (!isObj(params) && !isObj(query)) throw new TypeError('params or query incoming must be an object');
       config['url'] = getPath(path, params, query);
     }
-    if (this.debug) console.warn('go to page:' + config['url']);
+    if (this.debug) console.warn('replace to page:' + config['url']);
     return new Promise((success, fail) => uni.redirectTo({ ...config, success, fail }));
   }
 
@@ -78,7 +78,7 @@ class UniToVueRouter {
       config['animationDuration'] = animationDuration;
       // #endif
     }
-    if (this.debug) console.warn('back page:' + config['delta']);
+    if (this.debug) console.warn('go page:' + config['delta']);
     return new Promise((success, fail) => uni.navigateBack({ ...config, success, fail }));
   }
 
@@ -90,7 +90,7 @@ class UniToVueRouter {
    */
   toTab(url) {
     if (!isStr(url)) throw new TypeError('Please pass in params string');
-    if (this.debug) console.warn('back page:' + url);
+    if (this.debug) console.warn('toTab page:' + url);
     return new Promise((success, fail) => uni.switchTab({ url, success, fail }));
   }
 
