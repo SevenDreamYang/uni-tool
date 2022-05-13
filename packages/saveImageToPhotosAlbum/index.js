@@ -28,7 +28,7 @@ function saveImageToPhotosAlbum(config) {
             a.download = fileName || '文件';
             a.click();
             a.remove();
-            config.success();
+            config.success(e);
           };
         }
       };

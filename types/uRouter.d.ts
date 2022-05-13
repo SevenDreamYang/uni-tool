@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import { AnyObject } from './common';
 interface BaseParams {
   path: string;
 }
@@ -18,7 +20,6 @@ interface PushParams extends UParams {
 
 interface ReplaceParams extends UParams {}
 
-import Vue from 'vue';
 interface GoParams extends BaseParams {
   delta?: number;
 }
@@ -29,14 +30,14 @@ declare class UniToVueRouter {
   push: (_params: string | (PushParams & AppParams)) => Promise<any>;
   replace: (_params: string | ReplaceParams) => Promise<any>;
   go: (_params: number | (GoParams & AppParams)) => Promise<any>;
-  toTab: (url: string) => Promise<any>;
-  closeAllTo: (_params: number | CloseAllToParams) => Promise<any>;
+  goTab: (url: string) => Promise<any>;
+  reTo: (_params: number | CloseAllToParams) => Promise<any>;
 }
 
 interface InstallationOptions {
-  debug: boolean;
+  debug?: boolean;
 }
 
-export declare function install(vue: typeof Vue, options?: InstallationOptions): void {
-  vue.prototype.$uRouter = new UniToVueRouter(options);
-};
+declare function install(vue: typeof Vue, options?: InstallationOptions): void;
+
+export { install };

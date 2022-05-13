@@ -5,8 +5,8 @@ import { isObj, isStr, isDef, isNum } from '../../utils/index';
  */
 
 class UniToVueRouter {
-  constructor({ debug = false }) {
-    this.debug = debug;
+  constructor(option) {
+    this.debug = option.debug;
   }
 
   /**
@@ -59,7 +59,7 @@ class UniToVueRouter {
    * 对应 uni.navigateBack(OBJECT)
    * https://uniapp.dcloud.io/api/router.html#navigateBack
    * todo：关闭当前页面，返回上一页面或多级页面。可通过 getCurrentPages() 获取当前的页面栈，决定需要返回几层
-   * todo：uni 中回退为正数 vue-router习惯为负数 如果是vue习惯就找绝对值 任何形式传入都可以
+   * todo：uni 中回退为正数 vue-router习惯为负数 如果是vue习惯就找绝对值 两种任何形式传入都可以
    */
   go(_params = 1) {
     if (!isNum(_params) && !isObj(_params)) throw new TypeError('Please pass in number or param object');
@@ -88,7 +88,7 @@ class UniToVueRouter {
    * todo：url 参数需要跳转的 tabBar 页面的路径（需在 pages.json 的 tabBar 字段定义的页面），路径后不能带参数
    * todo：跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。
    */
-  toTab(url) {
+  goTab(url) {
     if (!isStr(url)) throw new TypeError('Please pass in params string');
     if (this.debug) console.warn('toTab page:' + url);
     return new Promise((success, fail) => uni.switchTab({ url, success, fail }));
@@ -101,8 +101,8 @@ class UniToVueRouter {
    * todo：需要跳转的应用内页面路径 , 路径后可以带参数。如果跳转的页面路径是 tabBar 页面则不能带参数
    * todo：H5端调用uni.reLaunch之后之前页面栈会销毁，但是无法清空浏览器之前的历史记录
    */
-  closeAllTo(_params) {
-    if (!isNum(_params) && !isObj(_params)) throw new TypeError('Please pass in number or param object');
+  reTo(_params) {
+    if (!isStr(_params) && !isObj(_params)) throw new TypeError('Please pass in string or param object');
     const config = {};
     if (isStr(_params)) config['url'] = _params;
     if (isObj(_params)) {
