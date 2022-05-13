@@ -17,14 +17,25 @@
   // 待完善
   ```
 
-- setClipboardData
+- setClipboardData - setClipboardDataSync
 
   > 使用 App 端 使用 plus 重新封装。H5 使用 document.execCommand('copy') 封装 并 Promise 化
 
   ```js
-  setClipboardData('SevenDreamYang', true)
-    .then((res) => {})
-    .catch((err) => {});
+  function test() {
+    setClipboardData('SevenDreamYang', true)
+      .then((res) => {
+        console.log(res); // {code:1,env:'H5',msg:'setClipboardData:ok',text:'SevenDreamYang'}
+      })
+      .catch((err) => {});
+  }
+
+  async function test() {
+    const [err, res] = await setClipboardDataSync('SevenDreamYang', true);
+    if (!err) {
+      console.log(res); // {code:1,env:'H5',msg:'setClipboardData:ok',text:'SevenDreamYang'}
+    }
+  }
   ```
 
   - params
@@ -44,20 +55,29 @@
   | env  | string |      | 环境：ios ｜ android ｜ H5 ｜ MP |
   | text | string |      |            复制的文字            |
 
-- getClipboardData
+- getClipboardData - getClipboardDataSync
 
   > 使用 App 端 使用 plus 重新封装。H5 使用 window.navigator.clipboard 封装 并 Promise 化
   >
-  > 生产环境中H5 中使用协议必须是 HTTPS，且在用户事先授予网站或应用对剪切板的访问许可之后，才可有效。
+  > 生产环境中 H5 中使用协议必须是 HTTPS，且在用户事先授予网站或应用对剪切板的访问许可之后，才可有效。
   >
-  > 开发阶段请使用 http://localhost 来进行测试和开发，ip无效。
+  > 开发阶段请使用 http://localhost 来进行测试和开发，ip 无效。
 
   ```js
-  getClipboardData()
-    .then((res) => {
-      console.log(res); // SevenDreamYang
-    })
-    .catch((err) => {});
+  function test() {
+    getClipboardData()
+      .then((res) => {
+        console.log(res); // SevenDreamYang
+      })
+      .catch((err) => {});
+  }
+  
+  async function test() {
+    const [err, res] = await getClipboardDataSync();
+    if (!err) {
+      console.log(res); // SevenDreamYangs
+    }
+  }
   ```
 
 ### uni 跳转 router 化
@@ -192,6 +212,10 @@
   | params | object |      | 携带参数 与 query 选择使用，用哪个都可以。  |          |
   | query  | object |      | 携带参数 与 params 选择使用，用哪个都可以。 |          |
 
+
+
+
+
 ### wxjssdk 二次封装
 
->对微信小程序常用API进行封装
+> 对微信小程序常用 API 进行封装
